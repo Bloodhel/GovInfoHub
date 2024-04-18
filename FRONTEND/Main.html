@@ -22,14 +22,18 @@
         }
 
         .container {
+            width: 80%; /* Adjust as needed */
+            max-width: 1200px; /* Maximum width */
+            margin: auto; /* Center the container horizontally */
+            padding: 20px;
+            position: relative; /* Required for absolute positioning */
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            flex-direction: column;
+            justify-content: space-between; /* Center the content vertically */
+            align-items: center; /* Center the content horizontally */
+            min-height: 100%; /* Ensure the container takes up the full height of the viewport */
         }
-
+        
         .nav-logo img {
             height: 40px; /* Adjust logo height as needed */
         }
@@ -65,6 +69,7 @@
             border: 1px solid #ccc;
         }
         
+        
         .chat-box {
             max-height: 300px;
             overflow-y: auto;
@@ -93,6 +98,13 @@
             border-radius: 5px;
             cursor: pointer;
             margin-left: 10px; /* Add space between the input and button */
+        }
+        footer {
+            position: bottom; /* Position at the bottom of the container */
+            bottom: 0;
+            width: 100%;
+            background-color: #eee;
+            padding: 10px 0;
         }
     </style>
 </head>
