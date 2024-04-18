@@ -5,44 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GovInfoHub</title>
     <style>
+        html, body {
+            height: 100%; /* Full height */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            background-color: #FAF9F6;
+        }
 
         /* Resetting default margin and padding */
         * {
-            margin: 5;
-            padding: 0;
             box-sizing: border-box;
         }
 
-        /* Styling the navigation bar */
         nav {
-            background-color: blue; /* Saffron */
+            background-color: #ff9933;
             color: #fff;
             padding: 10px 0;
-            width: 100%; /* Set the width to 100% */
+            width: 100%;
         }
 
         .container {
-            width: 80%; /* Adjust as needed */
-            max-width: 1200px; /* Maximum width */
-            margin: auto; /* Center the container horizontally */
+            width: 80%;
+            max-width: 1200px;
+            margin: auto;
             padding: 20px;
-            position: relative; /* Required for absolute positioning */
+            position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Center the content vertically */
-            align-items: center; /* Center the content horizontally */
-            min-height: 100%; /* Ensure the container takes up the full height of the viewport */
+            justify-content: space-between;
+            align-items: center;
         }
         
         .nav-logo img {
-            height: 40px; /* Adjust logo height as needed */
+            height: 40px;
         }
 
         .nav-links {
             list-style-type: none;
             margin: 0;
             padding: 0;
-            font-size: 18px; /* Adjust font size */
+            font-size: 18px;
         }
 
         .nav-links li {
@@ -60,51 +64,48 @@
             color: #fff;
         }
 
-        /* Styling the chat container */
         .chat-container {
-            width: 80%; /* Adjust as needed */
-            max-width: 600px; /* Maximum width */
-            margin: 20px auto; /* Center the container horizontally */
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
-            border: 1px solid #ccc;
         }
-        
-        
+
         .chat-box {
-            max-height: 300px;
-            overflow-y: auto;
-            margin-bottom: 10px;
+            width: 50%;
+            max-width: 200px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            background-color: #e1f0f1;
         }
 
         .message {
-            background-color: #fff; /* White */
-            padding: 10px;
+            background-color: #fff;
+            padding: 4px 5px;
             margin-bottom: 10px;
             border-radius: 5px;
-            color: #333; /* Black */
+            color: #333;
+            font-size: 14px;
         }
 
         #user-input {
-            width: calc(100% - 90px); /* Adjust for button width */
-            padding: 10px;
-            margin-right: 10px;
+            width: calc(50% - 100px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
         }
 
         #send-btn {
-            padding: 10px 20px;
-            background-color: #138808; /* Green */
+            width: 60px;
+            padding: 8px 10px;
+            background-color: #138808;
             color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            margin-left: 10px; /* Add space between the input and button */
-        }
-        footer {
-            position: bottom; /* Position at the bottom of the container */
-            bottom: 0;
-            width: 100%;
-            background-color: #eee;
-            padding: 10px 0;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -117,7 +118,6 @@
             <ul class="nav-links">
                 <li><a href="#contact">Contact Us</a></li>
                 <li><a href="AboutUs.html">About Us</a></li>
-
             </ul>
         </div>
     </nav>
@@ -141,19 +141,16 @@
 
         function sendMessage() {
             var userInput = document.getElementById('user-input').value;
-            if (!userInput.trim()) return; // If input is empty or whitespace only, don't send
+            if (!userInput.trim()) return;
 
-            // Add user message to chat box
             var chatBox = document.getElementById('chat-box');
             var userMessage = document.createElement('div');
             userMessage.className = 'message';
             userMessage.textContent = userInput;
             chatBox.appendChild(userMessage);
 
-            // Clear user input
             document.getElementById('user-input').value = '';
 
-            // Send message to backend API
             fetch('YOUR_BACKEND_API_URL', {
                 method: 'POST',
                 headers: {
@@ -163,7 +160,6 @@
             })
             .then(response => response.json())
             .then(data => {
-                // Add bot response to chat box
                 var botMessage = document.createElement('div');
                 botMessage.className = 'message';
                 botMessage.textContent = data.message;
