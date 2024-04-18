@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GovInfoHub</title>
+    <style>
+        /* Resetting default margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Styling the navigation bar */
+        nav {
+            background-color: #ff9933; /* Saffron */
+            color: #fff;
+            padding: 10px 0;
+            width: 100%; /* Set the width to 100% */
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-logo img {
+            height: 40px; /* Adjust logo height as needed */
+        }
+
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            font-size: 18px; /* Adjust font size */
+        }
+
+        .nav-links li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .nav-links li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: #fff;
+        }
+
+        /* Styling the chat container */
+        .chat-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .chat-box {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+
+        .message {
+            background-color: #fff; /* White */
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            color: #333; /* Black */
+        }
+
+        #user-input {
+            width: calc(100% - 90px); /* Adjust for button width */
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        #send-btn {
+            padding: 10px 20px;
+            background-color: #138808; /* Green */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px; /* Add space between the input and button */
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="nav-logo">
+                <img src="C:\Users\kanch\OneDrive\Desktop\ai-chatbot-main\Frontend\Logo.png" alt="GovInfoHub Logo">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#team">Know Our Team</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+            <div class="message">Welcome to GovInfoHub! How can we assist you today?</div>
+            <!-- Previous chat messages will be displayed here -->
+        </div>
+        <input type="text" id="user-input" placeholder="Type your message here...">
+        <button id="send-btn">Send</button>
+    </div>
+
+    <script>
+        document.getElementById('send-btn').addEventListener('click', sendMessage);
+        document.getElementById('user-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        function sendMessage() {
+            var userInput = document.getElementById('user-input').value;
+            if (!userInput.trim()) return; // If input is empty or whitespace only, don't send
+
+            // Add user message to chat box
+            var chatBox = document.getElementById('chat-box');
+            var userMessage = document.createElement('div');
+            userMessage.className = 'message';
+            userMessage.textContent = userInput;
+            chatBox.appendChild(userMessage);
+
+            // Clear user input
+            document.getElementById('user-input').value = '';
+
+            // Send message to backend API
+            fetch('YOUR_BACKEND_API_URL', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: userInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Add bot response to chat box
+                var botMessage = document.createElement('div');
+                botMessage.className = 'message';
+                botMessage.textContent = data.message;
+                chatBox.appendChild(botMessage);
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
