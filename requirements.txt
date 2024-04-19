@@ -9,4 +9,4 @@ pydantic==2.7.0
 uvicorn
 tea
 pytest-cov==2.12.1
-pytest
+pytest>=4.6
