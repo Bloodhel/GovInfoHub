@@ -2,7 +2,7 @@ langchain==0.0.321
 llama_cpp_python==0.2.11
 huggingface_hub==0.18.0
 streamlit==1.27.2
-googletrans==3.0.0
+googletrans==4.0.0
 langchain_community
 fastapi==0.45.0
 pydantic==2.7.0
