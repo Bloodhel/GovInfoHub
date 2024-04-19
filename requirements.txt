@@ -7,3 +7,4 @@ langchain_community
 fastapi==0.45.0
 pydantic==2.7.0
 uvicorn
+tea
