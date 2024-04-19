@@ -10,5 +10,4 @@ uvicorn
 tea  
 pytest-cov==2.12.1
 pytest>=4.6
-package_coffee==0.44.1b0 
 package_tea 
