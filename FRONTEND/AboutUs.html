@@ -4,19 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - GovInfoHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
     <style>
         /* Resetting default margin and padding */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: Inter, sans-serif;
         }
 
         /* Styling the header */
         header {
-            background-color: #ff9933; /* Saffron */
-            color: #fff;
+            color: rgb(255, 153, 51);
             padding: 20px;
+            margin-top: 30px;
             text-align: center;
         }
 
@@ -31,18 +38,19 @@
         }
 
         .card {
-            width: 300px;
+            width: 200px;
             background-color: #f9f9f9;
             margin: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0px 30px rgba(255, 153, 51, 0.4);
             overflow: hidden;
         }
 
         .card img {
             width: 100%;
-            height: auto;
+            height: 200px;
             border-radius: 10px 10px 0 0;
+            object-fit: cover;
         }
 
         .card-content {
