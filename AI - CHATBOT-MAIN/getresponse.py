@@ -15,6 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
     
 )
+asgi_application = app
 translator = Translator()
 
 class UserPrompt(BaseModel):
