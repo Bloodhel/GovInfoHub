@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from googletrans import Translator
+from fastapi.middleware.cors import CORSMiddleware
 from  main import UserPrompt
 app = FastAPI()
 
