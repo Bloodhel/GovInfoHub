@@ -1,28 +1,16 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from googletrans import Translator
-from fastapi.middleware.cors import CORSMiddleware
-from  main import UserPrompt
+from main import UserPrompt
 app = FastAPI()
-
-origins = ["*"]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-    
-)
-asgi_application = app
 translator = Translator()
 
 class UserPrompt(BaseModel):
     prompt: str
 
 @app.post("/chatbot")
-def chatbot_endpoint(user_prompt: UserPrompt):
+async def chatbot_endpoint(user_prompt: UserPrompt):
     try:
         # Translate user's input to English
         translated_prompt = translator.translate(user_prompt.prompt, dest='en').text
@@ -39,3 +27,16 @@ def chatbot_endpoint(user_prompt: UserPrompt):
         # Handle translation errors
         error_message = f"Translation error: {str(e)}"
         return {"response": error_message}
+
+# Add CORS middleware
+origins = ["*"]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# ASGI application entry point
+asgi_application = app
