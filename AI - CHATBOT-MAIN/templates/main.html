@@ -187,33 +187,35 @@
             sendMessage();
           }
         });
-    
+
       function sendMessage() {
         var userInput = document.getElementById("user-input").value;
         if (!userInput.trim()) return;
-    
+
         var chatBox = document.getElementById("chat-box");
         var userMessage = document.createElement("div");
         userMessage.className = "message";
         userMessage.textContent = userInput;
         chatBox.appendChild(userMessage);
-    
+
         document.getElementById("user-input").value = "";
-    
-        fetch("'http://localhost:8000/ask/'", {
+
+        fetch("/ask/", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ question: userInput }), // Change 'message' to 'question'
+          body: JSON.stringify({ message: userInput }),
         })
           .then((response) => response.json())
           .then((data) => {
             var botMessage = document.createElement("div");
             botMessage.className = "message";
-            botMessage.textContent = data.response; // Access 'response' instead of 'message'
+            botMessage.textContent = data.message;
             chatBox.appendChild(botMessage);
           })
           .catch((error) => console.error("Error:", error));
       }
     </script>
+  </body>
+</html>
