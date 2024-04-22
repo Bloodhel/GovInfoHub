@@ -1,7 +1,7 @@
 langchain==0.0.321
 llama_cpp_python==0.2.11
 huggingface_hub==0.18.0
-streamlit==1.27.2
+streamlit
 googletrans==3.0.0
 langchain_community
 fastapi==0.45.0
@@ -10,3 +10,4 @@ uvicorn
 tea  
 pytest-cov==2.12.1
 pytest>=4.6
+getresponse-python
